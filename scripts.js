@@ -7,18 +7,18 @@
 // 1.1 Crea una variable `nombre` con tu nombre y `edad` con tu edad.
 //     Luego retorna una frase: "Soy <nombre> y tengo <edad> años."
 
-const presentarse = () => {
-    let nombre = 'Kevin'
-    let edad = 22
-
-    return `Soy ${nombre} y tengo ${edad} años`
-};
-
 // 1.2 Dado el valor 42, retorna su tipo de dato como string (ej: "number")
 
+const presentarse = () => {
+    let nombre = 'Joaquín'
+    let edad = 18
+
+    return `Soy ${nombre} y tengo ${edad} años`
+}
+
 const obtenerTipo = (valor) => {
-    // TODO
-};
+    return typeof valor;
+}
 
 // ============================================================
 // EJERCICIO 2: CONDICIONES
@@ -30,16 +30,32 @@ const obtenerTipo = (valor) => {
 //     "negativo" si es menor que 0
 //     "cero" si es exactamente 0
 
-const clasificarNumero = (num) => {
-    // TODO
-};
-
 // 2.2 Recibe una nota (0-100) y retorna la letra según:
 //     90-100 => "A", 80-89 => "B", 70-79 => "C"
 //     60-69 => "D", menos de 60 => "F"
 
+const clasificarNumero = (num) => {
+    if (num > 0) {
+        return 'positivo';
+    } else if (num < 0) {
+        return 'negativo';
+    } else {
+        return 'cero';
+    }
+};
+
 const notaALetra = (nota) => {
-    // TODO
+    if (nota >= 90) {
+        return 'A';
+    } else if (nota >= 80) {
+        return 'B';
+    } else if (nota >= 70) {
+        return 'C';
+    } else if (nota >= 60) {
+        return 'D';
+    } else {
+        return 'F';
+    }
 };
 
 // ============================================================
@@ -49,17 +65,25 @@ const notaALetra = (nota) => {
 
 // 3.1 Retorna la suma de todos los números del 1 al n (inclusive).
 
-const sumarHasta = (n) => {
-    // TODO
-};
-
 // 3.2 Retorna un array con los números del 1 al n.
 //     Ej: contarHasta(5) => [1, 2, 3, 4, 5]
 
-const contarHasta = (n) => {
-    // TODO
+
+const sumarHasta = (n) => {
+    let suma = 0;
+    for (let i = 1; i <= n; i++) {
+        suma += i;
+    }
+    return suma;
 };
 
+const contarHasta = (n) => {
+    let resultado = [];
+    for (let i = 1; i <= n; i++) {
+        resultado.push(i);
+    }
+    return resultado;
+};
 // ============================================================
 // EJERCICIO 4: ARREGLOS
 // ============================================================
@@ -68,58 +92,101 @@ const contarHasta = (n) => {
 const calificaciones = [72, 95, 58, 88, 100, 65];
 
 // 4.1 Retorna el promedio de las calificaciones.
-
-const promedio = (arr) => {
-    // TODO
-};
-
 // 4.2 Retorna la calificación más alta.
-
-const maximo = (arr) => {
-    // TODO
-};
-
 // 4.3 Retorna solo las calificaciones aprobadas (>= 60).
-
-const aprobadas = (arr) => {
-    // TODO
-};
-
 // 4.4 Retorna un nuevo array con cada calificación convertida a porcentaje de 100.
 //     Ej: [72, 95] -> [72%, 95%] (como strings)
-
-const aPorcentaje = (arr) => {
-    // TODO
-};
-
 // 4.5 Ordena el array de menor a mayor sin usar el método .sort().
 //     Ej: ordenarSinSort([5, 3, 8, 1, 2]) -> [1, 2, 3, 5, 8]
 
-const ordenarSinSort = (arr) => {
-    // TODO
+const promedio = (arr) => {
+    if (arr.length === 0) return 0;
+    let suma = 0;
+    for (let i = 0; i < arr.length; i++) {
+        suma += arr[i];
+    }
+    return suma / arr.length;
+}
+
+const maximo = (arr) => {
+    if (arr.length === 0) return null;
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
 };
 
+const aprobadas = (arr) => {
+    let resultado = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= 60) {
+            resultado.push(arr[i]);
+        }
+    }
+    return resultado;
+};
+
+const aPorcentaje = (arr) => {
+    let resultado = [];
+    for (let i = 0; i < arr.length; i++) {
+        resultado.push(arr[i] + "%");
+    }
+    return resultado;
+};
+
+
+const ordenarSinSort = (arr) => {
+    let copia = [...arr];
+    for (let i = 0; i < copia.length; i++) {
+        for (let j = 0; j < copia.length - 1 - i; j++) {
+            if (copia[j] > copia[j + 1]) {
+                let temp = copia[j];
+                copia[j] = copia[j + 1];
+                copia[j + 1] = temp;
+            }
+        }
+    }
+    return copia;
+};
 // ============================================================
 // EJERCICIO 5: FUNCIONES PURAS
 // ============================================================
 // https://www.w3schools.com/js/js_functions.asp
 
 // 5.1 Retorna el factorial de n. Ej: factorial(5) -> 120
-
-const factorial = (n) => {
-    // TODO
-};
-
 // 5.2 Retorna true si la palabra es un palíndromo. Ej: "oso" -> true
-
-const esPalindromo = (palabra) => {
-    // TODO
-};
-
 // 5.3 Dado un array, retorna sus elementos al revés. NO uses .reverse()
 
+
+
+const factorial = (n) => {
+    let resultado = 1;
+    for (let i = 1; i <= n; i++) {
+        resultado *= i;
+    }
+    return resultado;
+};
+
+
+const esPalindromo = (palabra) => {
+    let limpia = palabra.toLowerCase();
+    let alReves = "";
+    for (let i = limpia.length - 1; i >= 0; i--) {
+        alReves += limpia[i];
+    }
+    return limpia === alReves;
+};
+
+
 const invertir = (arr) => {
-    // TODO
+    let resultado = [];
+    for (let i = arr.length - 1; i >= 0; i--) {
+        resultado.push(arr[i]);
+    }
+    return resultado;
 };
 
 // ============================================================
@@ -130,16 +197,17 @@ const invertir = (arr) => {
 
 // 6.1 Cuando el usuario haga clic en el botón #saludar,
 //     muestra en #mensaje: "¡Hola, <valor del input>!"
-
-const saludar = () => {
-    // TODO
-};
-
 // 6.2 Cuando el usuario escriba en #texto, muestra en #contador
 //     la cantidad de caracteres: "3 caracteres"
 
+const saludar = () => {
+    const nombre = document.getElementById("nombre").value;
+    document.getElementById("mensaje").textContent = `¡Hola, ${nombre}!`;
+};
+
 const contarCaracteres = () => {
-    // TODO
+    const texto = document.getElementById("texto").value;
+    document.getElementById("contador").textContent = `${texto.length} caracteres`;
 };
 
 // ============================================================
@@ -198,3 +266,4 @@ document.addEventListener("DOMContentLoaded", () => {
     contarCaracteres();
     saludar();
 });
+
